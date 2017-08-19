@@ -113,7 +113,7 @@
                         num = +elem.tagName.match(/\d/)[0];
                         if (num > lastNum) {
                             levelArr.push(1);
-                            lastRevNum += 1;
+                            lastRevNum = num;
                         } else if (num === lastRevNum ||
                             num > lastRevNum && num <= lastNum) {
                             levelArr.push(0);
