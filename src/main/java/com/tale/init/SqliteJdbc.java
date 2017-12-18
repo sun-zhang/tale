@@ -26,8 +26,10 @@ public final class SqliteJdbc {
     }
 
     public static final String DB_NAME = "tale.db";
-    public static String DB_PATH = SqliteJdbc.class.getClassLoader().getResource("").getPath() + DB_NAME;
+//    public static String DB_PATH = SqliteJdbc.class.getClassLoader().getResource("").getPath() + DB_NAME;
+    public static String DB_PATH = "/home/zhangsen/blog/data/"+DB_NAME;
     public static String DB_SRC = "jdbc:sqlite://" + DB_PATH;
+
 
     static {
         try {
@@ -43,7 +45,9 @@ public final class SqliteJdbc {
     public static void importSql() {
         try {
             if(Blade.$().isDev()){
-                DB_PATH = System.getProperty("user.dir") + "/" + DB_NAME;
+                if (DB_PATH == null){
+                    DB_PATH = System.getProperty("user.dir") + "/" + DB_NAME;
+                }
                 DB_SRC = "jdbc:sqlite://" + DB_PATH;
             }
             Connection con = DriverManager.getConnection(DB_SRC);
