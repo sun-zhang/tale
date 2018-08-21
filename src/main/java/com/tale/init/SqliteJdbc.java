@@ -2,6 +2,8 @@ package com.tale.init;
 
 import com.blade.Blade;
 import com.blade.kit.IOKit;
+import com.blade.kit.base.Config;
+import com.tale.utils.TaleUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +29,7 @@ public final class SqliteJdbc {
 
     public static final String DB_NAME = "tale.db";
 //    public static String DB_PATH = SqliteJdbc.class.getClassLoader().getResource("").getPath() + DB_NAME;
-    public static String DB_PATH = "/home/zhangsen/blog/data/"+DB_NAME;
+    public static String DB_PATH = "/home/sun_zhang_cn/blog/data/"+DB_NAME;
     public static String DB_SRC = "jdbc:sqlite://" + DB_PATH;
 
 
@@ -35,8 +37,22 @@ public final class SqliteJdbc {
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("加载sqlite驱动失败",e);
         }
+    }
+
+    public static String getDBPath(){
+        if (null == DB_PATH){
+            DB_PATH = TaleUtils.getDBPath()+ "/" +TaleUtils.getDBName();
+        }
+        return DB_PATH;
+    }
+
+    public static String getDBSrc(){
+        if (null == DB_SRC){
+            DB_SRC = "jdbc:sqlite://" + getDBPath();
+        }
+        return DB_SRC;
     }
 
     /**
