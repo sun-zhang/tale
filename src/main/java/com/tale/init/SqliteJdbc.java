@@ -41,7 +41,7 @@ public final class SqliteJdbc {
         }
     }
 
-    public static String getDBPath(){
+    /*public static String getDBPath(){
         if (null == DB_PATH){
             DB_PATH = TaleUtils.getDBPath()+ "/" +TaleUtils.getDBName();
         }
@@ -53,7 +53,7 @@ public final class SqliteJdbc {
             DB_SRC = "jdbc:sqlite://" + getDBPath();
         }
         return DB_SRC;
-    }
+    }*/
 
     /**
      * 测试连接并导入数据库
